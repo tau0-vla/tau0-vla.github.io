@@ -143,40 +143,44 @@ export default function Home() {
         <section className="blog-copy blog-opening">
           <h2>One Instruction, Many Consequential Decisions</h2>
           <p>
-            Imagine asking a robot to make milk tea. The recipe sounds simple:
-            prepare the cup, add the toppings, pour the milk and tea, seal the
-            lid, and insert a straw. Yet that single instruction must coordinate
-            many subtasks over minutes of interaction.
+            Imagine asking a robot to make milk tea. The goal sounds simple,
+            but achieving it may require preparing a cup, adding toppings,
+            pouring milk and tea, sealing the lid, and inserting a straw. From
+            this single goal, the robot must repeatedly decide what to do next
+            over several minutes of interaction.
           </p>
           <p>
-            People make this look easy because we continuously track what has
-            happened, what just failed, and what should come next. A robot can
-            execute each motion correctly and still fail by choosing the wrong
-            next subtask.
+            Humans do this naturally by tracking progress, verifying outcomes,
+            and adjusting what comes next. A robot, however, can execute each
+            individual skill correctly and still fail by selecting the wrong
+            next subtask—or the right one at the wrong stage.
           </p>
           <p>
             Vision-language-action models are increasingly capable at bounded
             skills such as picking, placing, wiping, opening, and closing.
-            Longer tasks add a different burden: searching for objects,
-            verifying outcomes, preserving progress, and recovering from
-            failures. The challenge is not simply producing more actions, but
-            making a sequence of consequential decisions.
+            Long-horizon tasks impose an additional burden: tracking task
+            state, preserving progress, verifying outcomes, and recovering from
+            failures. Success therefore depends not only on executing actions,
+            but on making a coherent sequence of consequential decisions.
           </p>
         </section>
 
         <section className="blog-copy blog-continuation">
           <p>
             Hierarchical VLAs expose language subtasks as an interface between
-            reasoning and control, but most still select the next subtask with
-            one amortized prediction under a fixed inference budget. They do
-            not compare alternatives through the physical states those choices
-            may produce, so mistakes are often discovered only after execution.
+            high-level reasoning and low-level control. Most, however, select
+            each subtask with a single prediction under a fixed inference
+            budget. They neither explore alternatives nor predict their likely
+            outcomes, so mistakes are often discovered only after execution.
           </p>
           <p>
-            <TauName /> instead turns next-subtask selection into an
-            inference-time reasoning problem. Subtasks provide the right search
-            unit: sparse enough to compare, but long enough to produce
-            meaningful and observable consequences.
+            <TauName /> instead treats next-subtask selection as an
+            inference-time reasoning problem. It proposes alternatives,
+            predicts their visual outcomes, and compares the resulting branches
+            before commitment. Subtasks form a compact, semantically structured
+            search space: they occur at sparse decision boundaries, align with
+            the logical stages of a task, and produce meaningful changes that
+            can be visually evaluated.
           </p>
         </section>
 
@@ -184,20 +188,22 @@ export default function Home() {
           <div className="blog-copy">
             <h2>Long-Horizon Manipulation in the Real World</h2>
             <p>
-              We study four long-horizon tasks spanning 13–25 ordered steps:
-              cleaning a room, preparing ingredients, cooking tomato and egg
-              stir fry, and making milk tea. Episodes last up to 12 minutes and
-              require navigation, object search, articulated interaction, tool
-              use, cooking, and recovery from imperfect execution.
+              We evaluate four long-horizon tasks spanning 13–25 ordered steps:
+              Clean Room, Prepare Ingredients, Tomato and Egg Stir Fry, and Make
+              Milk Tea. <em>Prepare Ingredients</em> is the paper’s task name
+              for ingredient preparation: a 14-step routine that retrieves,
+              prepares, and organizes ingredients before cooking. Episodes last
+              up to 12 minutes and require navigation, object search,
+              articulated interaction, tool use, cooking, and recovery from
+              imperfect execution.
             </p>
             <p>
-              These tasks are deliberately procedural. Clean Room requires the
-              robot to retain progress while moving between rooms. Prepare
-              Ingredients contains early manipulation steps whose failure blocks
-              everything downstream. Stir Fry includes visually ambiguous
-              stages such as seasoning, and Milk Tea tests whether the system
-              can maintain a precise order through repeated pouring and
-              assembly operations.
+              The rollout row below highlights three of these tasks: Clean Room,
+              Make Milk Tea, and Tomato and Egg Stir Fry, with the cooking task
+              shown from front and rear views. Prepare Ingredients appears in
+              the paper task overview immediately below the videos. Together,
+              these tasks test whether the robot can preserve progress, verify
+              outcomes, and recover across extended procedures.
             </p>
           </div>
           <div className="blog-rollout-grid">
@@ -236,11 +242,10 @@ export default function Home() {
           </figure>
           <div className="blog-copy blog-after-grid">
             <p>
-              The broader evaluation also includes Collect Laundry on a mobile
-              ARX platform and instruction-following tasks on a fixed-base
-              Franka arm. Those shorter tasks are executed directly, without
-              high-level search, so they isolate the shared low-level policy
-              from the long-horizon planning system.
+              The first four panels summarize the long-horizon evaluation. The
+              final two panels belong to the shorter cross-embodiment evaluation;
+              their ARX and Franka rollout videos appear later with the
+              generalist VLA discussion.
             </p>
           </div>
         </section>
@@ -249,25 +254,25 @@ export default function Home() {
           <h2>Two Systems, Two Time Scales</h2>
           <p>
             <TauName /> operates through two policies at different time scales.
-            The high-level policy chooses subtasks and tracks progress at
-            decision boundaries, while the low-level policy executes each
-            choice at the faster control rate. At a boundary, the planner reads
-            the instruction, observation, and execution memory, then proposes a
-            subtask and memory update.
+            At subtask boundaries, the high-level policy reads the task
+            instruction, current observation, and execution memory to select
+            the next subtask and update its progress record. The low-level
+            policy then executes the selected subtask at a faster control rate.
           </p>
           <p>
-            Token-level confidence determines whether to act immediately or
-            spend more computation. For uncertain decisions, the policy
-            proposes alternatives, a visual world model previews their terminal
-            observations, and a value model scores the predicted progress.
-            Search and reflection compare these branches before commitment.
+            Token-level confidence determines whether the high-level policy acts
+            immediately or allocates additional computation. For uncertain
+            decisions, it proposes alternative subtasks, uses a world model to
+            predict their post-execution outcomes, and applies a value model to
+            estimate the resulting task progress. Search and reflection compare
+            these branches before committing to one.
           </p>
           <p>
-            Only the selected subtask reaches the executor. Its observed outcome
-            updates memory before the next decision, closing the loop between
-            imagined and physical consequences. This selective test-time
-            computation improves next-subtask prediction by 15–24 percentage
-            points across in-domain and shifted settings.
+            The observed outcome of the selected subtask updates memory before
+            the next decision, closing the loop between predicted and physical
+            outcomes. This selective test-time computation improves next-subtask
+            accuracy by 15–24 percentage points across in-domain and
+            distribution-shifted settings.
           </p>
         </section>
 
@@ -287,39 +292,39 @@ export default function Home() {
 
         <section className="blog-copy blog-continuation">
           <p>
-            Planning across two time scales requires the execution memory to
-            remain synchronized with the physical world. A failed grasp or a
-            missing object can invalidate an otherwise plausible progress
-            record.
+            For this loop to remain reliable, execution memory must stay
+            synchronized with the physical world. A failed grasp or missing
+            object can make an otherwise plausible progress record incorrect.
+            When new visual evidence conflicts with memory, <TauName /> can
+            advance, roll back, or retry, correcting both lagging and
+            over-optimistic records while preserving valid earlier progress.
           </p>
           <p>
-            <TauName /> can advance, roll back, or retry when new visual
-            evidence disagrees with memory. This corrects both lagging records
-            and over-optimistic ones without discarding valid earlier progress.
-          </p>
-          <p>
-            These corrections are learned by perturbing memories derived from
-            existing demonstrations, without collecting a separate correction
-            corpus. The resulting revisable memory improves next-subtask
-            accuracy by 11.0 percentage points.
+            These correction behaviors are learned by perturbing memories
+            derived from existing demonstrations, without collecting a separate
+            correction dataset. The resulting revisable memory improves
+            next-subtask accuracy by 11.0 percentage points.
           </p>
         </section>
 
         <section className="blog-wide-section blog-continuation-wide">
           <div className="blog-copy">
             <p>
-              Across these four physical tasks, the hierarchical system with
-              Plan Once reaches 45.0% average success, compared with 27.5% for
-              direct execution with the same low-level policy. Both variants
-              run without beam search, and every entry below reports ten
-              physical trials per task.
+              Across the four long-horizon physical tasks, the hierarchical
+              system with Plan Once achieves 45.0% average success, compared
+              with 27.5% for direct execution. Both settings use the same
+              low-level policy and run without beam search, with ten physical
+              trials per task.
             </p>
             <p>
-              This is a controlled comparison: the observations, action
-              representation, and low-level policy remain fixed. The direct
-              system receives the full task instruction throughout the episode,
-              while the hierarchical system receives bounded subtasks selected
-              from the latest observation and execution memory.
+              The key difference lies in how the low-level policy is guided.
+              Direct execution conditions every action on the full task
+              instruction, leaving the policy to infer the current stage
+              throughout the episode. Hierarchical execution instead provides a
+              bounded subtask selected from the latest observation and execution
+              memory. The improvement therefore reflects the benefit of
+              explicitly tracking progress and deciding what to do next, rather
+              than a change in the underlying execution policy.
             </p>
           </div>
           <div className="table-shell blog-table">

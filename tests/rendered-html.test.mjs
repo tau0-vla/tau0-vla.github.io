@@ -48,10 +48,13 @@ test("exports the τ0-VLA research note as the canonical page", async () => {
   assert.doesNotMatch(html, />Long-horizon robot manipulation</);
   assert.match(html, /<details open/);
   assert.match(html, /Imagine asking a robot to make milk tea/);
-  assert.match(html, /test-time computation improves next-subtask prediction/);
+  assert.match(html, /test-time computation improves next-subtask accuracy/);
   assert.match(html, /improves next-subtask accuracy by 11\.0 percentage points/);
   assert.match(html, /27\.5% for direct execution/);
-  assert.match(html, /Plan Once reaches 45\.0% average success/);
+  assert.match(html, /Plan Once achieves 45\.0% average success/);
+  assert.match(html, /rollout row below highlights three of these tasks/);
+  assert.match(html, /Prepare Ingredients appears in the paper task overview/);
+  assert.match(html, /ARX and Franka rollout videos appear later/);
   assert.match(html, /author  = \{Tau0 VLA Team\}/);
   assert.doesNotMatch(html, /Anonymous/);
   assert.doesNotMatch(html, /62\.5%|37\.5%/);
@@ -142,5 +145,5 @@ test("exports all publication assets", async () => {
   assert.match(previewServer, /response\.writeHead\(206/);
   assert.doesNotMatch(`${page}\n${layout}\n${css}`, /agibot|finch/i);
 
-  await access(new URL("../next.config.ts", projectRoot));
+  await access(new URL("next.config.ts", projectRoot));
 });
