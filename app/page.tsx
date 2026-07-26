@@ -440,14 +440,15 @@ export default function Home() {
             arm joints, grippers, waist, and mobile base across fixed-base,
             bimanual, and mobile platforms. Each embodiment maps its available
             state and control dimensions into this representation while masking
-            unused slots, allowing a single policy to operate across diverse
-            robot configurations.
+            unused slots, providing a common interface for adaptation across
+            diverse robot configurations.
           </p>
           <p>
             Training combines 40,115 hours of heterogeneous real-world robot
-            experience with multimodal data, providing a general execution
-            policy across tasks and embodiments. The ARX and Franka rollouts
-            below show the same policy operating on distinct robot
+            experience with multimodal data to establish a shared pretrained
+            foundation across tasks and embodiments. Each deployment is then
+            fine-tuned separately for its target setting. The ARX and Franka
+            rollouts below illustrate these adapted policies on distinct robot
             configurations.
           </p>
         </section>

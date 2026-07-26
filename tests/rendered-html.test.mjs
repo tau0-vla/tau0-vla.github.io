@@ -24,6 +24,11 @@ test("exports the τ0-VLA research note as the canonical page", async () => {
   assert.match(html, /More Compute, Better Decisions/);
   assert.match(html, /74\.0% next-subtask accuracy/);
   assert.match(html, /A Generalist VLA across Robot Embodiments/);
+  assert.match(html, /fine-tuned separately for its target setting/);
+  assert.doesNotMatch(
+    html,
+    /single policy to operate across diverse|same policy operating on distinct/,
+  );
   assert.match(
     html,
     /Scaling Robot Intelligence Through Next-Subtask Prediction/,
