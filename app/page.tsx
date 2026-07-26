@@ -13,8 +13,8 @@ export const metadata: Metadata = {
 const rolloutVideos = [
   {
     id: "clean-room",
-    title: "Clean Room",
-    description: "25 steps",
+    title: "Prepare Ingredients & Clean Room",
+    description: "14-step and 25-step tasks",
     src: "/media/rollout-clean-room.mp4",
     poster: "/media/rollout-clean-room-poster.jpg",
   },
@@ -190,20 +190,19 @@ export default function Home() {
             <p>
               We evaluate four long-horizon tasks spanning 13–25 ordered steps:
               Clean Room, Prepare Ingredients, Tomato and Egg Stir Fry, and Make
-              Milk Tea. <em>Prepare Ingredients</em> is the paper’s task name
-              for ingredient preparation: a 14-step routine that retrieves,
-              prepares, and organizes ingredients before cooking. Episodes last
-              up to 12 minutes and require navigation, object search,
-              articulated interaction, tool use, cooking, and recovery from
-              imperfect execution.
+              Milk Tea. The tasks range from ingredient preparation and room
+              organization to cooking and drink assembly. Episodes last up to
+              12 minutes and require navigation, object search, articulated
+              interaction, tool use, cooking, and recovery from imperfect
+              execution.
             </p>
             <p>
-              The rollout row below highlights three of these tasks: Clean Room,
-              Make Milk Tea, and Tomato and Egg Stir Fry, with the cooking task
-              shown from front and rear views. Prepare Ingredients appears in
-              the paper task overview immediately below the videos. Together,
-              these tasks test whether the robot can preserve progress, verify
-              outcomes, and recover across extended procedures.
+              The rollout row below covers all four tasks: Prepare Ingredients
+              and Clean Room are presented in one video, Make Milk Tea in
+              another, and Tomato and Egg Stir Fry from both front and rear
+              views. Together, these tasks test whether the robot can preserve
+              progress, verify outcomes, and recover across extended
+              procedures.
             </p>
           </div>
           <div className="blog-rollout-grid">
@@ -366,34 +365,36 @@ export default function Home() {
 
         <section className="blog-wide-section">
           <div className="blog-copy">
-            <h2>More compute, better decisions</h2>
+            <h2>More Compute, Better Decisions</h2>
             <p>
-              We isolate high-level decision quality on Make Milk Tea, Clean
-              Room, and both in-domain and out-of-domain Book Organization.
-              Plan Once makes a single high-level prediction. Best-of-N samples
-              and scores several one-step candidates. TTC additionally expands
-              multi-step branches and uses reflection before commitment.
+              We evaluate high-level decision quality on Make Milk Tea, Clean
+              Room, and both in-domain and out-of-domain Book Organization. Plan
+              Once makes a single subtask prediction, Best-of-N samples and
+              scores multiple one-step candidates, and TTC further expands
+              multi-step branches with consequence prediction and reflection
+              before commitment.
             </p>
             <p>
-              The distinction is clearest under distribution shift. On the
-              unseen Book Organization layouts, TTC reaches 74.0% next-subtask
+              The benefit is most evident under distribution shift. On unseen
+              Book Organization layouts, TTC achieves 74.0% next-subtask
               accuracy, compared with 50.0% for Plan Once and 57.5% for
               Best-of-N. Predicting consequences at decision time provides
-              evidence that is unavailable to a single pattern-matched
-              prediction.
+              additional evidence beyond a single forward prediction or
+              one-step candidate ranking.
             </p>
             <p>
-              The open-loop improvement carries into physical execution. With
-              the low-level policy held fixed, TTC raises success from 5/10 to
-              7/10 on Milk Tea, from 6/10 to 9/10 on Book Organization, and from
-              5/10 to 7/10 on Clean Room.
+              These improvements in decision quality translate to physical
+              execution. With the low-level policy fixed, TTC improves success
+              from 5/10 to 7/10 on Milk Tea, from 6/10 to 9/10 on Book
+              Organization, and from 5/10 to 7/10 on Clean Room.
             </p>
             <p>
-              The gains do not come from searching indefinitely. Accuracy rises
-              quickly at low-to-moderate compute budgets and then approaches a
-              plateau. Confidence-based routing therefore matters twice: it
-              avoids paying for search on routine steps and avoids revising
-              predictions that were already reliable.
+              The gains do not require unlimited computation. Accuracy improves
+              rapidly at low-to-moderate compute budgets and then gradually
+              saturates. Confidence-based routing enables selective test-time
+              computation by allocating additional reasoning only when the
+              decision is uncertain, while allowing high-confidence decisions
+              to proceed directly.
             </p>
           </div>
           <div className="blog-result-grid">
@@ -424,29 +425,30 @@ export default function Home() {
         </section>
 
         <section className="blog-copy">
-          <h2>A generalist VLA across robot embodiments</h2>
+          <h2>A Generalist VLA across Robot Embodiments</h2>
           <p>
             Once a subtask is selected, a pretrained vision-language backbone
-            and Mixture-of-Transformers action head produce short action chunks
-            from multi-view observations, robot state, and language. The same
-            policy receives either the original instruction for direct
-            execution or a bounded subtask from the high-level planner, keeping
-            the control interface unchanged across both settings.
+            and Mixture-of-Transformers action expert produce action chunks from
+            multi-view observations, robot state, and language. The same
+            low-level policy receives either the original instruction for
+            direct execution or a bounded subtask selected by the high-level
+            policy, keeping the control interface consistent across both
+            settings.
           </p>
           <p>
             A shared 40-dimensional interface supports end-effector motion,
-            arms, grippers, waist, and mobile base across fixed-base, bimanual,
-            and mobile platforms. Each embodiment maps its available state and
-            control dimensions into this representation while masking unused
-            slots, allowing one model to operate across different robot
-            configurations.
+            arm joints, grippers, waist, and mobile base across fixed-base,
+            bimanual, and mobile platforms. Each embodiment maps its available
+            state and control dimensions into this representation while masking
+            unused slots, allowing a single policy to operate across diverse
+            robot configurations.
           </p>
           <p>
             Training combines 40,115 hours of heterogeneous real-world robot
-            experience with multimodal data. Short-horizon evaluations on ARX
-            and Franka bypass the high-level planner, isolating the resulting
-            cross-embodiment, language-conditioned execution capability from
-            the memory and search mechanisms used on longer tasks.
+            experience with multimodal data, providing a general execution
+            policy across tasks and embodiments. The ARX and Franka rollouts
+            below show the same policy operating on distinct robot
+            configurations.
           </p>
         </section>
 
@@ -472,29 +474,30 @@ export default function Home() {
         </div>
 
         <section className="blog-copy blog-ending">
-          <h2>Scaling Robot Intelligence at the Decision Boundary</h2>
+          <h2>Scaling Robot Intelligence Through Next-Subtask Prediction</h2>
           <p>
-            A low-level VLA can be excellent at mapping the current observation
-            to the next action chunk, yet still fail when it does not know
-            whether that action belongs to the right stage of the task. A
-            language planner can produce a plausible sequence of steps, yet
-            still fail if it does not know what actually happened in the
-            physical world. <TauName /> connects the two: a planner that tracks
-            progress and imagines consequences, paired with an executor that
-            grounds the selected subtask in robot actions.
+            A low-level VLA can reliably map observations to action chunks, yet
+            still fail when it cannot determine whether those actions
+            correspond to the right stage of a long-horizon task. Conversely, a
+            high-level policy can propose plausible plans but fail without
+            feedback about what actually happened. <TauName /> connects the two:
+            a high-level policy that tracks progress and predicts outcomes,
+            paired with an executor that grounds selected subtasks in robot
+            actions.
           </p>
           <p>
-            The interface between them is the subtask. <TauName /> plans in
-            subtasks, previews their outcomes, selects one, acts, and then
-            updates its state from the next observation. For long-horizon
-            robots, this is the difference between merely following an
-            instruction and tracking progress through a task.
+            The interface between them is the subtask. <TauName /> plans at the
+            subtask level, predicts possible outcomes, selects a decision,
+            executes it, and updates its state from subsequent observations. For
+            long-horizon robots, this transforms instruction following from
+            executing isolated steps into continuously tracking progress through
+            a task.
           </p>
           <p>
-            Looking ahead, the goal is to extend this closed loop to richer
-            tasks and longer deployments: robots that know when to deliberate,
-            verify what actually happened, and revise their plans before small
-            errors become task-level failures.
+            Future systems can extend this closed loop to richer tasks and
+            longer deployments, where robots decide when to deliberate, verify
+            outcomes, and revise their plans before small errors compound into
+            task-level failures.
           </p>
           <a className="blog-paper-link" href="/tau0-vla.pdf" target="_blank">
             Read the paper ↗

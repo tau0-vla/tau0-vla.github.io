@@ -21,14 +21,17 @@ test("exports the τ0-VLA research note as the canonical page", async () => {
   assert.match(html, /One Instruction, Many Consequential Decisions/);
   assert.match(html, /Two Systems, Two Time Scales/);
   assert.match(html, /Long-Horizon Manipulation in the Real World/);
-  assert.match(html, /More compute, better decisions/);
+  assert.match(html, /More Compute, Better Decisions/);
   assert.match(html, /74\.0% next-subtask accuracy/);
-  assert.match(html, /A generalist VLA across robot embodiments/);
-  assert.match(html, /Scaling Robot Intelligence at the Decision Boundary/);
+  assert.match(html, /A Generalist VLA across Robot Embodiments/);
+  assert.match(
+    html,
+    /Scaling Robot Intelligence Through Next-Subtask Prediction/,
+  );
   assert.match(html, /The interface between them is the subtask/);
   assert.match(html, /paper-demo-tasks\.png/);
-  assert.match(html, /Clean Room/);
-  assert.match(html, /25 steps/);
+  assert.match(html, /Prepare Ingredients &amp; Clean Room/);
+  assert.match(html, /14-step and 25-step tasks/);
   assert.match(html, /Prepare Ingredients/);
   assert.match(html, /Tomato and Egg Stir Fry/);
   assert.match(html, /Front view · 22 steps/);
@@ -52,8 +55,8 @@ test("exports the τ0-VLA research note as the canonical page", async () => {
   assert.match(html, /improves next-subtask accuracy by 11\.0 percentage points/);
   assert.match(html, /27\.5% for direct execution/);
   assert.match(html, /Plan Once achieves 45\.0% average success/);
-  assert.match(html, /rollout row below highlights three of these tasks/);
-  assert.match(html, /Prepare Ingredients appears in the paper task overview/);
+  assert.match(html, /rollout row below covers all four tasks/);
+  assert.match(html, /Prepare Ingredients and Clean Room are presented in one video/);
   assert.match(html, /ARX and Franka rollout videos appear later/);
   assert.match(html, /author  = \{Tau0 VLA Team\}/);
   assert.doesNotMatch(html, /Anonymous/);
@@ -121,7 +124,10 @@ test("exports all publication assets", async () => {
   ]);
 
   assert.match(page, /One Instruction, Many Consequential Decisions/);
-  assert.match(page, /Scaling Robot Intelligence at the Decision Boundary/);
+  assert.match(
+    page,
+    /Scaling Robot Intelligence Through Next-Subtask Prediction/,
+  );
   assert.match(layout, /summary_large_image/);
   assert.match(css, /prefers-reduced-motion/);
   assert.match(css, /--text:\s*#181e25/);
