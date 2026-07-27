@@ -60,7 +60,6 @@ test("exports the τ0-VLA research note as the canonical page", async () => {
   assert.match(html, /rollout-collect-laundry\.mp4/);
   assert.match(html, /rollout-tidy-makeup-table\.mp4/);
   assert.doesNotMatch(html, />Long-horizon robot manipulation</);
-  assert.match(html, /<details open/);
   assert.match(html, /Imagine asking a robot to make milk tea/);
   assert.match(html, /test-time computation improves next-subtask accuracy/);
   assert.match(html, /improves next-subtask accuracy by 11\.0 percentage points/);
@@ -69,8 +68,8 @@ test("exports the τ0-VLA research note as the canonical page", async () => {
   assert.match(html, /rollout row below covers all four tasks/);
   assert.match(html, /Prepare Ingredients and Clean Room are presented in one video/);
   assert.match(html, /ARX and Franka rollout videos appear later/);
-  assert.match(html, /author  = \{Tau0 VLA Team\}/);
   assert.doesNotMatch(html, /Anonymous/);
+  assert.doesNotMatch(html, /<summary>Citation<\/summary>|href="#citation"/);
   assert.doesNotMatch(html, /62\.5%|37\.5%/);
   assert.doesNotMatch(html, /blog-lead|blog-inline-result|<blockquote>/);
   assert.doesNotMatch(html, /What the failures reveal/);

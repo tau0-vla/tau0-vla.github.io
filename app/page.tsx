@@ -73,13 +73,6 @@ const results = [
   ],
 ];
 
-const bibtex = `@article{tau0vla2026,
-  title   = {Tau0-VLA: a Hierarchical Robot Foundation Model
-             with World-Model-Guided Test-Time Computation},
-  author  = {Tau0 VLA Team},
-  year    = {2026}
-}`;
-
 function TauName() {
   return (
     <span className="tau-name">
@@ -95,7 +88,6 @@ export default function Home() {
         <a className="blog-wordmark" href="#top"><TauName /></a>
         <div>
           <a href="#research">Research</a>
-          <a href="#citation">Citation</a>
         </div>
       </nav>
 
@@ -519,12 +511,6 @@ export default function Home() {
           </a>
         </section>
 
-        <section className="blog-citation" id="citation">
-          <details open>
-            <summary>Citation</summary>
-            <pre>{bibtex}</pre>
-          </details>
-        </section>
       </article>
 
       <footer className="blog-footer">
