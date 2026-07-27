@@ -138,6 +138,13 @@ test("exports all publication assets", async () => {
     mainDemo.size < 100 * 1024 * 1024,
     "Main demo must remain below GitHub's 100 MiB per-file limit",
   );
+  const combinedRollout = await stat(
+    new URL("../out/media/rollout-clean-room.mp4", import.meta.url),
+  );
+  assert.ok(
+    combinedRollout.size < 100 * 1024 * 1024,
+    "Combined rollout must remain below GitHub's 100 MiB per-file limit",
+  );
 
   const [page, layout, css, workflow, previewServer] = await Promise.all([
     readFile(new URL("../app/page.tsx", import.meta.url), "utf8"),
