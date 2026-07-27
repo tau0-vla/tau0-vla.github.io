@@ -25,9 +25,12 @@ test("exports the τ0-VLA research note as the canonical page", async () => {
   );
   assert.doesNotMatch(html, /aria-disabled="true">Huggingface/);
   assert.match(html, /demo-full\.mp4/);
-  assert.match(html, /One Instruction, Many Consequential Decisions/);
+  assert.doesNotMatch(html, /One Instruction, Many Consequential Decisions/);
+  assert.match(html, /Getting robots to handle everyday tasks around the home/);
+  assert.match(html, /success of long-horizon tasks depends more and more on/);
+  assert.match(html, /Most of them still make each high-level decision with a single forward pass/);
+  assert.match(html, /Our new robotic foundation model/);
   assert.match(html, /Two Systems, Two Time Scales/);
-  assert.match(html, /Many still select each subtask with a fixed inference budget/);
   assert.match(html, /Token-confidence statistics determine/);
   assert.match(html, /score candidate quality from those predicted outcomes/);
   assert.match(html, /Long-Horizon Manipulation in the Real World/);
@@ -66,7 +69,7 @@ test("exports the τ0-VLA research note as the canonical page", async () => {
   assert.match(html, /rollout-collect-laundry\.mp4/);
   assert.match(html, /rollout-tidy-makeup-table\.mp4/);
   assert.doesNotMatch(html, />Long-horizon robot manipulation</);
-  assert.match(html, /Imagine asking a robot to make milk tea/);
+  assert.doesNotMatch(html, /Imagine asking a robot to make milk tea/);
   assert.match(html, /test-time computation improves next-subtask accuracy/);
   assert.match(html, /improves next-subtask accuracy by 11\.0 percentage points/);
   assert.match(html, /27\.5% for direct execution/);
@@ -144,7 +147,8 @@ test("exports all publication assets", async () => {
     readFile(new URL("../scripts/serve-static.mjs", import.meta.url), "utf8"),
   ]);
 
-  assert.match(page, /One Instruction, Many Consequential Decisions/);
+  assert.doesNotMatch(page, /One Instruction, Many Consequential Decisions/);
+  assert.match(page, /Getting robots to handle everyday tasks around the home/);
   assert.match(
     page,
     /Scaling Robot Intelligence Through Next-Subtask Prediction/,

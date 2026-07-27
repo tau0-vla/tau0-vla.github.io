@@ -143,48 +143,43 @@ export default function Home() {
         </div>
 
         <section className="blog-copy blog-opening">
-          <h2>One Instruction, Many Consequential Decisions</h2>
           <p>
-            Imagine asking a robot to make milk tea. The goal sounds simple,
-            but achieving it may require preparing a cup, adding toppings,
-            pouring milk and tea, sealing the lid, and inserting a straw. From
-            this single goal, the robot must repeatedly decide what to do next
-            over several minutes of interaction.
+            Getting robots to handle everyday tasks around the home has never
+            been easy. Preparing a cup of milk tea requires the robot to pour
+            milk and tea in sequence, add toppings, attach a lid and insert a
+            straw. The full process contains tens of steps. Cleaning the house
+            is even more demanding. The robot must move around, collect clothes,
+            hang a bag, hand over a blanket, and dispose of trash without pause.
           </p>
           <p>
-            Humans do this naturally by tracking progress, verifying outcomes,
-            and adjusting what comes next. A robot, however, can execute each
-            individual skill correctly and still fail by selecting the wrong
-            next subtask—or the right one at the wrong stage.
-          </p>
-          <p>
-            Vision-language-action models are increasingly capable at bounded
-            skills such as picking, placing, wiping, opening, and closing.
-            Long-horizon tasks impose an additional burden: tracking task
-            state, preserving progress, verifying outcomes, and recovering from
-            failures. Success therefore depends not only on executing actions,
-            but on making a coherent sequence of consequential decisions.
+            As a task grows from a few seconds to several minutes, the main
+            challenge shifts. Precise execution of actions still matters, but
+            success of long-horizon tasks depends more and more on progress
+            tracking, outcome prediction and subtask planning. The robot must
+            remember what has been completed, select the next appropriate step,
+            and recover when an action fails.
           </p>
         </section>
 
         <section className="blog-copy blog-continuation">
           <p>
             Hierarchical VLAs expose language subtasks as an interface between
-            high-level reasoning and low-level control. Many still select each
-            subtask with a fixed inference budget, while recent systems have
-            begun exploring high-level search or recursive refinement. The open
-            problem is how to combine open-ended language-subtask search with
-            visual outcome prediction and execution memory in a generalist
-            real-robot hierarchy.
+            high-level reasoning and low-level control. Most of them still make
+            each high-level decision with a single forward pass. They map the
+            current observation and execution history directly to the next
+            subtask, without explicitly comparing alternatives or estimating
+            the physical states those alternatives may produce. A poor decision
+            is often detected after execution, and the environment has already
+            been changed.
           </p>
           <p>
-            <TauName /> instead treats next-subtask selection as an
-            inference-time reasoning problem. It proposes alternatives,
-            predicts their visual outcomes, and compares the resulting branches
-            before commitment. Subtasks form a compact, semantically structured
-            search space: they occur at sparse decision boundaries, align with
-            the logical stages of a task, and produce meaningful changes that
-            can be visually evaluated.
+            Our new robotic foundation model <TauName /> addresses this
+            limitation with world-model-guided test-time computation. It
+            proposes subtasks, predicts their visual outcomes, and compares the
+            resulting branches before commitment. Subtasks form a compact,
+            semantically structured search space: they occur at sparse decision
+            boundaries, align with the logical stages of a task, and produce
+            meaningful changes that can be visually evaluated.
           </p>
         </section>
 
