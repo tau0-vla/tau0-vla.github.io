@@ -278,8 +278,8 @@ export default function Home() {
           <Image
             src="/media/framework-latest.png"
             alt="τ0-VLA high-level decision making and low-level execution architecture"
-            width={3046}
-            height={1172}
+            width={3200}
+            height={1318}
             priority
           />
           <figcaption>
