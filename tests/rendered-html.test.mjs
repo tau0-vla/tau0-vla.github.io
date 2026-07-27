@@ -15,14 +15,20 @@ test("exports the τ0-VLA research note as the canonical page", async () => {
   assert.doesNotMatch(html, /Tau0 VLA Team · July 27, 2026/);
   assert.match(html, /July 27, 2026/);
   assert.match(html, /Read Paper/);
-  assert.match(html, /Github/);
+  assert.match(html, /GitHub/);
+  assert.match(html, /href="https:\/\/github\.com\/sii-research\/tau-0-vla"/);
+  assert.doesNotMatch(html, /aria-disabled="true">GitHub/);
   assert.match(html, /Huggingface/);
   assert.match(html, /demo-full\.mp4/);
   assert.match(html, /One Instruction, Many Consequential Decisions/);
   assert.match(html, /Two Systems, Two Time Scales/);
+  assert.match(html, /Many still select each subtask with a fixed inference budget/);
+  assert.match(html, /Token-confidence statistics determine/);
+  assert.match(html, /score candidate quality from those predicted outcomes/);
   assert.match(html, /Long-Horizon Manipulation in the Real World/);
   assert.match(html, /More Compute, Better Decisions/);
   assert.match(html, /74\.0% next-subtask accuracy/);
+  assert.match(html, /TTC raises progress to 95\.38%/);
   assert.match(html, /A Generalist VLA across Robot Embodiments/);
   assert.match(html, /fine-tuned separately for its target setting/);
   assert.doesNotMatch(

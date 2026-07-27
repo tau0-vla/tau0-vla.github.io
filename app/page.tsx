@@ -119,9 +119,14 @@ export default function Home() {
             >
               Read Paper
             </a>
-            <span className="blog-action-outline" aria-disabled="true">
-              Github
-            </span>
+            <a
+              className="blog-action-outline"
+              href="https://github.com/sii-research/tau-0-vla"
+              target="_blank"
+              rel="noreferrer"
+            >
+              GitHub
+            </a>
             <span className="blog-action-outline" aria-disabled="true">
               Huggingface
             </span>
@@ -168,10 +173,12 @@ export default function Home() {
         <section className="blog-copy blog-continuation">
           <p>
             Hierarchical VLAs expose language subtasks as an interface between
-            high-level reasoning and low-level control. Most, however, select
-            each subtask with a single prediction under a fixed inference
-            budget. They neither explore alternatives nor predict their likely
-            outcomes, so mistakes are often discovered only after execution.
+            high-level reasoning and low-level control. Many still select each
+            subtask with a fixed inference budget, while recent systems have
+            begun exploring high-level search or recursive refinement. The open
+            problem is how to combine open-ended language-subtask search with
+            visual outcome prediction and execution memory in a generalist
+            real-robot hierarchy.
           </p>
           <p>
             <TauName /> instead treats next-subtask selection as an
@@ -259,12 +266,12 @@ export default function Home() {
             policy then executes the selected subtask at a faster control rate.
           </p>
           <p>
-            Token-level confidence determines whether the high-level policy acts
-            immediately or allocates additional computation. For uncertain
+            Token-confidence statistics determine whether the high-level policy
+            acts immediately or allocates additional computation. For uncertain
             decisions, it proposes alternative subtasks, uses a world model to
             predict their post-execution outcomes, and applies a value model to
-            estimate the resulting task progress. Search and reflection compare
-            these branches before committing to one.
+            score candidate quality from those predicted outcomes. Search and
+            reflection compare these branches before committing to one.
           </p>
           <p>
             The observed outcome of the selected subtask updates memory before
@@ -387,6 +394,13 @@ export default function Home() {
               execution. With the low-level policy fixed, TTC improves success
               from 5/10 to 7/10 on Milk Tea, from 6/10 to 9/10 on Book
               Organization, and from 5/10 to 7/10 on Clean Room.
+            </p>
+            <p>
+              On Milk Tea, both variants already complete more than 91% of the
+              sequence on average; the remaining failures concentrate at lid
+              attachment and straw insertion. TTC raises progress to 95.38%,
+              identifying final contact-rich manipulation as the main remaining
+              bottleneck.
             </p>
             <p>
               The gains do not require unlimited computation. Accuracy improves
