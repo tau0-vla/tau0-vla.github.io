@@ -19,6 +19,11 @@ test("exports the τ0-VLA research note as the canonical page", async () => {
   assert.match(html, /href="https:\/\/github\.com\/sii-research\/tau-0-vla"/);
   assert.doesNotMatch(html, /aria-disabled="true">GitHub/);
   assert.match(html, /Huggingface/);
+  assert.match(
+    html,
+    /href="https:\/\/huggingface\.co\/sii-research\/tau-0-vla"/,
+  );
+  assert.doesNotMatch(html, /aria-disabled="true">Huggingface/);
   assert.match(html, /demo-full\.mp4/);
   assert.match(html, /One Instruction, Many Consequential Decisions/);
   assert.match(html, /Two Systems, Two Time Scales/);

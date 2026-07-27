@@ -119,9 +119,14 @@ export default function Home() {
             >
               GitHub
             </a>
-            <span className="blog-action-outline" aria-disabled="true">
+            <a
+              className="blog-action-outline"
+              href="https://huggingface.co/sii-research/tau-0-vla"
+              target="_blank"
+              rel="noreferrer"
+            >
               Huggingface
-            </span>
+            </a>
           </div>
         </header>
 
