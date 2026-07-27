@@ -77,6 +77,11 @@ test("exports the τ0-VLA research note as the canonical page", async () => {
   assert.doesNotMatch(html, /Project Page|Blog View|href="\/blog\//);
   assert.match(html, /demo-full\.mp4/);
   assert.match(html, /og:image/);
+  assert.match(
+    html,
+    /googletagmanager\.com\/gtag\/js\?id=G-0BJRE5LEFZ/,
+  );
+  assert.match(html, /gtag\('config', 'G-0BJRE5LEFZ'\)/);
   assert.doesNotMatch(html, /codex-preview|starter project|your site is taking shape/i);
   assert.doesNotMatch(html, /agibot|finch/i);
 });
