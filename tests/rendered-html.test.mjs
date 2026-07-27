@@ -55,7 +55,8 @@ test("exports the τ0-VLA research note as the canonical page", async () => {
   assert.match(html, /Collect Laundry/);
   assert.match(html, /ARX AC One · 5 steps/);
   assert.match(html, /Tidy Makeup Table/);
-  assert.match(html, /Franka · Makeup Puff · 4 steps/);
+  assert.match(html, /Franka · 8 steps/);
+  assert.doesNotMatch(html, /Franka · Makeup Puff · 4 steps/);
   assert.doesNotMatch(html, /21-step mobile manipulation|Ingredient Prep|21 steps/);
   assert.doesNotMatch(html, /Video 0[1-4]|video placeholder/);
   assert.match(html, /rollout-clean-room\.mp4/);

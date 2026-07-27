@@ -52,7 +52,7 @@ const embodimentVideos = [
   {
     id: "tidy-makeup-table",
     title: "Tidy Makeup Table",
-    description: "Franka · Makeup Puff · 4 steps",
+    description: "Franka · 8 steps",
     src: "/media/rollout-tidy-makeup-table.mp4",
     poster: "/media/rollout-tidy-makeup-table-poster.jpg",
   },
