@@ -179,8 +179,11 @@ test("exports all publication assets", async () => {
   assert.match(css, /\.blog-rollout-grid\s*\{[\s\S]*?overflow-x:\s*auto/);
   assert.match(css, /\.blog-video-card h3\s*\{[\s\S]*?font-size:\s*14px/);
   assert.match(css, /\.blog-result-grid figcaption\s*\{[\s\S]*?font-size:\s*13px/);
-  assert.match(workflow, /actions\/configure-pages@v5/);
-  assert.match(workflow, /actions\/deploy-pages@v4/);
+  assert.match(workflow, /actions\/checkout@v5/);
+  assert.match(workflow, /actions\/configure-pages@v6/);
+  assert.match(workflow, /actions\/setup-node@v5/);
+  assert.match(workflow, /actions\/upload-pages-artifact@v5/);
+  assert.match(workflow, /actions\/deploy-pages@v5/);
   assert.match(previewServer, /"Accept-Ranges": "bytes"/);
   assert.match(previewServer, /"Content-Range"/);
   assert.match(previewServer, /response\.writeHead\(206/);
