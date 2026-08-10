@@ -63,11 +63,16 @@ alternative path, not the current production path.
   wording that says the ARX and Franka results use adapted, target-specific
   policies derived from the shared pretrained foundation.
 - Preserve all existing numerical claims that match the paper source.
+- Before changing publication metadata, fetch the Overleaf Git remote and use
+  its latest fast-forwardable `master` state as the authoritative paper source.
+  Review incoming diffs before compilation; do not auto-resolve divergence or
+  overwrite unfinished collaborator edits.
 - Update PDF metadata to the visible title “τ0-VLA: a Hierarchical Robot
   Foundation Model with World-Model-Guided Test-Time Computation”.
-- Recompile the 18-page paper, confirm the author list includes Pengfei Zhou,
-  confirm the visible title and page count, and sync the verified PDF to
-  `public/tau0-vla.pdf`.
+- Recompile the latest paper, confirm the author list includes Pengfei Zhou,
+  report the resulting page count, and sync the verified PDF to
+  `public/tau0-vla.pdf`. The current baseline is 18 pages, but a legitimate
+  newer Overleaf revision is not forced back to that count.
 - Update the Hugging Face model-card BibTeX to include Pengfei Zhou if the Pro
   has authenticated write access. If authentication is absent, prepare the
   exact patch and report the remaining external action.
@@ -132,7 +137,7 @@ Final local verification consists of:
 3. `npm run lint`;
 4. `npm run build` for the retained Sites/Vinext path;
 5. `npm audit` with remaining advisories classified;
-6. PDF metadata, page-count, author-list, and SHA-256 checks;
+6. PDF metadata, current page-count, author-list, and SHA-256 checks;
 7. clean Git status review in both maintenance worktrees;
 8. read-only remote comparison where credentials permit it.
 
@@ -153,8 +158,9 @@ Final local verification consists of:
 - The active stylesheet has one intentional visual layer and the rendered page
   remains behaviorally equivalent.
 - README and deployment instructions describe the current repository and links.
-- The published PDF artifact has the correct visible title, metadata title,
-  complete author list, and expected page count.
+- The published PDF artifact is compiled from the latest verified Overleaf
+  revision and has the correct visible title, metadata title, complete author
+  list, and reported page count.
 - Production-reachable high-severity dependency advisories are resolved.
 - Remaining scaffold-only advisories, if any, are explicitly documented with a
   reason they could not be safely fixed.
