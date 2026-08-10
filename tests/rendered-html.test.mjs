@@ -163,6 +163,8 @@ test("exports all publication assets", async () => {
   );
   assert.match(layout, /summary_large_image/);
   assert.match(css, /prefers-reduced-motion/);
+  assert.equal((css.match(/:root\s*\{/g) ?? []).length, 1);
+  assert.doesNotMatch(css, /Continuous research-note view|Minimal editorial layout/);
   assert.match(css, /--text:\s*#181e25/);
   assert.match(css, /--background:\s*#f9f6f0/);
   assert.match(css, /--accent:\s*#292929/);
