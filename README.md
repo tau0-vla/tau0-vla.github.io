@@ -51,6 +51,15 @@ npm run lint
 Run `npm run build` as an additional compatibility check when changing the
 retained Vinext/Cloudflare scaffold or shared dependencies.
 
+### Dependency audit status
+
+As of 2026-08-10, `npm audit --omit=dev` reports no production vulnerabilities.
+The remaining audit findings are confined to the retained Vinext/image-size
+and Drizzle Kit/esbuild-kit development paths. Do not use
+`npm audit fix --force`: npm currently proposes incompatible downgrades of
+Vinext and Drizzle Kit. Reassess these findings when either scaffold publishes
+a compatible fixed release.
+
 ## Publication assets
 
 `public/tau0-vla.pdf` is the downloadable paper. It should be replaced only by
