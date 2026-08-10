@@ -1,5 +1,5 @@
 import assert from "node:assert/strict";
-import { access, readFile, stat } from "node:fs/promises";
+import { access, readFile, readdir, stat } from "node:fs/promises";
 import test from "node:test";
 
 const projectRoot = new URL("../", import.meta.url);
@@ -39,6 +39,11 @@ test("exports the τ0-VLA research note as the canonical page", async () => {
   assert.match(html, /TTC raises progress to 95\.38%/);
   assert.match(html, /A Generalist VLA across Robot Embodiments/);
   assert.match(html, /fine-tuned separately for its target setting/);
+  assert.doesNotMatch(
+    html,
+    /evaluate the shared low-level policy on mobile ARX and fixed-base Franka/,
+  );
+  assert.match(html, /adapted, target-specific policies/);
   assert.doesNotMatch(
     html,
     /single policy to operate across diverse|same policy operating on distinct/,
@@ -131,20 +136,16 @@ test("exports all publication assets", async () => {
     access(new URL("../out/fonts/DMSans-SemiBold.ttf", import.meta.url)),
   ]);
 
-  const mainDemo = await stat(
-    new URL("../out/media/demo-full.mp4", import.meta.url),
-  );
-  assert.ok(
-    mainDemo.size < 100 * 1024 * 1024,
-    "Main demo must remain below GitHub's 100 MiB per-file limit",
-  );
-  const combinedRollout = await stat(
-    new URL("../out/media/rollout-clean-room.mp4", import.meta.url),
-  );
-  assert.ok(
-    combinedRollout.size < 100 * 1024 * 1024,
-    "Combined rollout must remain below GitHub's 100 MiB per-file limit",
-  );
+  const mediaDir = new URL("../out/media/", import.meta.url);
+  const mp4Files = (await readdir(mediaDir)).filter((name) => name.endsWith(".mp4"));
+  assert.equal(mp4Files.length, 7);
+  for (const name of mp4Files) {
+    const mediaStat = await stat(new URL(name, mediaDir));
+    assert.ok(
+      mediaStat.size < 100 * 1024 * 1024,
+      `${name} exceeds GitHub's 100 MiB limit`,
+    );
+  }
 
   const [page, layout, css, workflow, previewServer] = await Promise.all([
     readFile(new URL("../app/page.tsx", import.meta.url), "utf8"),

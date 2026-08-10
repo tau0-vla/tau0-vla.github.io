@@ -233,9 +233,9 @@ export default function Home() {
             />
             <figcaption>
               Physical-robot evaluation tasks from the paper. Panels (a)–(d)
-              show the four long-horizon tasks; panels (e)–(f) evaluate the
-              shared low-level policy on mobile ARX and fixed-base Franka
-              platforms.
+              show the four long-horizon tasks; panels (e)–(f) show adapted,
+              target-specific policies derived from the shared pretrained
+              foundation on mobile ARX and fixed-base Franka platforms.
             </figcaption>
           </figure>
           <div className="blog-copy blog-after-grid">
