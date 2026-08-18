@@ -15,6 +15,11 @@ test("exports the τ0-VLA research note as the canonical page", async () => {
   assert.doesNotMatch(html, /Tau0 VLA Team · July 27, 2026/);
   assert.match(html, /July 27, 2026/);
   assert.match(html, /Read Paper/);
+  assert.equal(
+    (html.match(/href="https:\/\/arxiv\.org\/abs\/2608\.16885"/g) ?? []).length,
+    2,
+  );
+  assert.doesNotMatch(html, /href="\/tau0-vla\.pdf"/);
   assert.match(html, /GitHub/);
   assert.match(html, /href="https:\/\/github\.com\/sii-research\/tau-0-vla"/);
   assert.doesNotMatch(html, /aria-disabled="true">GitHub/);

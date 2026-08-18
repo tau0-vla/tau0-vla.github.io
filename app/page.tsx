@@ -106,8 +106,9 @@ export default function Home() {
           <div className="blog-actions">
             <a
               className="blog-action-primary"
-              href="/tau0-vla.pdf"
+              href="https://arxiv.org/abs/2608.16885"
               target="_blank"
+              rel="noreferrer"
             >
               Read Paper
             </a>
@@ -506,7 +507,12 @@ export default function Home() {
             outcomes, and revise their plans before small errors compound into
             task-level failures.
           </p>
-          <a className="blog-paper-link" href="/tau0-vla.pdf" target="_blank">
+          <a
+            className="blog-paper-link"
+            href="https://arxiv.org/abs/2608.16885"
+            target="_blank"
+            rel="noreferrer"
+          >
             Read the paper ↗
           </a>
         </section>
