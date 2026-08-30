@@ -102,6 +102,11 @@ test("exports the τ0-VLA research note as the canonical page", async () => {
   assert.match(html, /gtag\('config', 'G-0BJRE5LEFZ'\)/);
   assert.doesNotMatch(html, /codex-preview|starter project|your site is taking shape/i);
   assert.doesNotMatch(html, /agibot|finch/i);
+  assert.doesNotMatch(html, /class="blog-nav"|class="blog-breadcrumb"/);
+  assert.match(html, /class="blog-header-topline"/);
+  assert.match(html, /class="blog-project-label"/);
+  assert.match(html, /class="blog-footer-inner"/);
+  assert.match(html, /class="blog-back-to-top"/);
 });
 
 test("does not publish the archived project-page route", async () => {

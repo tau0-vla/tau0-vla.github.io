@@ -1,10 +1,12 @@
 import type { Metadata } from "next";
 import Image from "next/image";
 
+const projectTitle =
+  "τ0-VLA: a Hierarchical Robot Foundation Model with World-Model-Guided Test-Time Computation";
+
 export const metadata: Metadata = {
   title: {
-    absolute:
-      "τ0-VLA: a Hierarchical Robot Foundation Model with World-Model-Guided Test-Time Computation",
+    absolute: projectTitle,
   },
   description:
     "A research-note view of τ0-VLA and compute-scalable high-level decision making.",
@@ -84,25 +86,19 @@ function TauName() {
 export default function Home() {
   return (
     <main className="blog-view" id="top">
-      <nav className="blog-nav" aria-label="Blog navigation">
-        <a className="blog-wordmark" href="#top"><TauName /></a>
-        <div>
-          <a href="#research">Research</a>
-        </div>
-      </nav>
-
       <article className="blog-article" id="research">
         <header className="blog-header">
-          <div className="blog-breadcrumb" aria-label="Breadcrumb">
-            <span>Research</span>
-            <i aria-hidden="true" />
-            <TauName />
+          <div className="blog-header-topline">
+            <div className="blog-project-identity">
+              <span className="blog-header-kicker">Research project</span>
+              <span className="blog-project-label"><TauName /></span>
+            </div>
+            <time className="blog-date" dateTime="2026-07-27">July 27, 2026</time>
           </div>
           <h1>
             <TauName />: a Hierarchical Robot Foundation Model with
             World-Model-Guided Test-Time Computation
           </h1>
-          <p className="blog-date">July 27, 2026</p>
           <div className="blog-actions">
             <a
               className="blog-action-primary"
@@ -520,8 +516,16 @@ export default function Home() {
       </article>
 
       <footer className="blog-footer">
-        <strong><TauName /></strong>
-        <a href="#top">Back to top ↑</a>
+        <div className="blog-footer-inner">
+          <div className="blog-footer-copy">
+            <span className="blog-footer-kicker">Research project</span>
+            <strong><TauName /></strong>
+            <p>{projectTitle}</p>
+          </div>
+          <a className="blog-back-to-top" href="#top">
+            <span>Back to top</span><span aria-hidden="true">↑</span>
+          </a>
+        </div>
       </footer>
     </main>
   );
