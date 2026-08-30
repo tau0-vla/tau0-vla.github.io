@@ -90,7 +90,6 @@ export default function Home() {
         <header className="blog-header">
           <div className="blog-header-topline">
             <div className="blog-project-identity">
-              <span className="blog-header-kicker">Research project</span>
               <span className="blog-project-label"><TauName /></span>
             </div>
             <time className="blog-date" dateTime="2026-07-27">July 27, 2026</time>
@@ -518,7 +517,6 @@ export default function Home() {
       <footer className="blog-footer">
         <div className="blog-footer-inner">
           <div className="blog-footer-copy">
-            <span className="blog-footer-kicker">Research project</span>
             <strong><TauName /></strong>
             <p>{projectTitle}</p>
           </div>

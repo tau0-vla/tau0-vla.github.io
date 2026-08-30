@@ -107,6 +107,7 @@ test("exports the τ0-VLA research note as the canonical page", async () => {
   assert.match(html, /class="blog-project-label"/);
   assert.match(html, /class="blog-footer-inner"/);
   assert.match(html, /class="blog-back-to-top"/);
+  assert.doesNotMatch(html, /Research project/);
 });
 
 test("does not publish the archived project-page route", async () => {
